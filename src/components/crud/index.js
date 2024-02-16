@@ -152,7 +152,6 @@ export default class index extends React.Component {
             handleSubmit={this.handleSubmit}
           />
         </div>
-        <Bukti/>
       </div>
     );
   }
