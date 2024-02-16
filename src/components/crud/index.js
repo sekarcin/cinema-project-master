@@ -4,7 +4,7 @@ import {useReactToPrint} from 'react-to-print';
 // import React, { useState } from 'react';
 import TableInput from "./Table";
 import Formulir from "./Form";
-import Bukti from "./invoice";
+
 
 export default class index extends React.Component {
   constructor(props) {
@@ -29,18 +29,18 @@ export default class index extends React.Component {
     });
   };
 
-  handleCalculateTotal = () => {
-    const totalHarga = this.state.jumlahPesan * this.state.hargaFilm;
-    this.setState({
-      data : [
-        ...this.setState.data,
-        {
-          totalHarga : this.state.totalHarga,
-        },
-      ],
-      totalHarga,
-    });
-  };
+  // handleCalculateTotal = () => {
+  //   const totalHarga = this.state.jumlahPesan * this.state.hargaFilm;
+  //   this.setState({
+  //     data : [
+  //       ...this.setState.data,
+  //       {
+  //         totalHarga : this.state.totalHarga,
+  //       },
+  //     ],
+  //     totalHarga,
+  //   });
+  // };
 
   handleSubmit = (event) => {
     event.preventDefault();
