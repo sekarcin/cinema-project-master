@@ -1,10 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Component, useRef } from "react";
-import {useReactToPrint} from 'react-to-print';
-// import React, { useState } from 'react';
 import TableInput from "./Table";
 import Formulir from "./Form";
-
+import TiketBioskop from "./TiketBioskop";
 
 export default class index extends React.Component {
   constructor(props) {
@@ -23,29 +21,22 @@ export default class index extends React.Component {
     };
   }
 
+  // notifySuccess = (namaPembeli) => {
+  //   toast.success(`Submit berhasil. Nama Pembeli: ${namaPembeli}`, {
+  //     position: toast.POSITION.TOP_RIGHT,
+  //     autoClose: 3000, // Durasi notifikasi
+  //   });
+  // };
+
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     });
   };
 
-  // handleCalculateTotal = () => {
-  //   const totalHarga = this.state.jumlahPesan * this.state.hargaFilm;
-  //   this.setState({
-  //     data : [
-  //       ...this.setState.data,
-  //       {
-  //         totalHarga : this.state.totalHarga,
-  //       },
-  //     ],
-  //     totalHarga,
-  //   });
-  // };
-
   handleSubmit = (event) => {
     event.preventDefault();
 
-    
     if (this.state.id === "") {
       this.setState({
         data: [
@@ -128,6 +119,25 @@ export default class index extends React.Component {
     });
   };
 
+  // buktiData = (id) => {
+  //   const dataPilihan = this.state.data
+  //     .filter((daftar) => daftar.id === id)
+  //     .map((filterData) => {
+  //       return filterData;
+  //     });
+  //   this.setState({
+  //     namaPembeli: dataPilihan.namaPembeli,
+  //     film: dataPilihan.film,
+  //     hariTanggal: dataPilihan.hariTanggal,
+  //     jamTayang: dataPilihan.jamTayang,
+  //     hargaFilm: dataPilihan.hargaFilm,
+  //     jumlahPesan: dataPilihan.jumlahPesan,
+  //     totalHarga: dataPilihan.totalHarga,
+  //     id: dataPilihan.id,
+  //     showProof: true,
+  //   });
+  // };
+
   render() {
     return (
       <div>
@@ -135,16 +145,16 @@ export default class index extends React.Component {
         <div className="container mt-4">
           <h4>Data Pemesanan</h4>
           <div className="container mt-4">
-          <TableInput
-            data={this.state.data}
-            editData={this.editData}
-            hapusData={this.hapusData}
-            
-          />
+            <TableInput
+              data={this.state.data}
+              editData={this.editData}
+              hapusData={this.hapusData}
+              buktiData={this.buktiData}
+            />
           </div>
           <hr />
         </div>
-        
+
         <div className="container mt-4">
           <Formulir
             {...this.state}
@@ -152,9 +162,12 @@ export default class index extends React.Component {
             handleSubmit={this.handleSubmit}
           />
         </div>
+        {/* <div className="container mt-4">
+        {this.state.showProof && (
+        <TiketBioskop/>
+        )}
+        </div> */}
       </div>
     );
   }
 }
-
-
