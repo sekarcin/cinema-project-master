@@ -1,7 +1,7 @@
+import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import InputGroup from 'react-bootstrap/InputGroup';
-
+import InputGroup from "react-bootstrap/InputGroup";
 
 const Formulir = ({
   namaPembeli,
@@ -13,13 +13,21 @@ const Formulir = ({
   totalHarga,
   handleChange,
   handleSubmit,
+  // notifySuccess,
   id,
 }) => {
+  const [submitSuccess, setSubmitSuccess] = React.useState(false);
+
+  const handleFormSubmit = (event) => {
+    handleSubmit(event);
+    setSubmitSuccess(true);
+  };
+  console.log("namaPembeli", namaPembeli);
   return (
     <div className="mt-5">
       <h4>{id ? "Edit Data" : "Tambah Data"}</h4>
       <hr />
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleFormSubmit}>
         <Form.Group className="mb-3" controlId="namaPembeli">
           <Form.Label>Nama Pembeli</Form.Label>
           <Form.Control
@@ -41,7 +49,6 @@ const Formulir = ({
             onChange={(event) => handleChange(event)}
           />
         </Form.Group>
-
 
         <Form.Group className="mb-3" controlId="hariTanggal">
           <Form.Label>Hari/Tanggal</Form.Label>
@@ -97,6 +104,12 @@ const Formulir = ({
         <Button variant="primary" type="submit">
           Submit
         </Button>
+        {/* Notifikasi berhasil */}
+        {submitSuccess && (
+          <div className="alert alert-success mt-3" role="alert">
+            Submit berhasil! Tiket Bioskop Atas Nama {namaPembeli} Telah Berhasil Diinput, Silahkan Cetak Tiket.
+          </div>
+        )}
       </Form>
     </div>
   );
